@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Inter, sans-serif;
+    font-weight: 100;
+    font-size: small;
+}
+
+
+
+#header {
+    top: 0;
+    position: sticky;
+    background-color: white;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+
+
+}
+
+#button-left, #button-right {
+    display: flex;
+    gap: 15px;
+
+}
+
+
+button {
+    padding: 20px 15px;
+    border: 1px solid #333;
+    background-color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#main-image {
+    height: 585px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    img {
+        height: 585px;
+        width: 100%;
+        display: block;
+        object-fit: cover;
+
+
+    }
+    #main-text {
+        position: absolute; /* Allows precise positioning relative to the parent */
+        top: 0;           /* Moves the text's starting point to the vertical center */
+        left: 0;          /* Moves the text's starting point to the horizontal center */
+        color: white; /* Choose a color that stands out against the image */
+        font-size: 1em;
+        font-weight: 100;
+        padding-left: 10px;
+
+    }
+}
+
+#tile-clothes {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 420px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    img {
+        height: auto;
+        width: calc(50% - 5px);
+        object-fit: cover;
+
+
+    }
+    #clothes-text {
+        position: absolute; /* Allows precise positioning relative to the parent */
+        top: 0;           /* Moves the text's starting point to the vertical center */
+        left: 0;          /* Moves the text's starting point to the horizontal center */
+        color: black; /* Choose a color that stands out against the image */
+        font-size: 1em;
+        font-weight: 100;
+        padding-left: 10px;
+
+    }
+}
