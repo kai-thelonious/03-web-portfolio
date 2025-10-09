@@ -24,22 +24,24 @@ body {
 
 #button-left, #button-right {
     display: flex;
-    gap: 15px;
+
 
 }
 
 
 button {
-    padding: 20px 15px;
-    border: 1px solid #333;
+    padding: 20px 20px;
+    border: 1px solid #eee;
     background-color: white;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s;
+    box-sizing: border-box;
 }
 
-#main-image {
-    height: 585px;
+
+
+#main-image, #woman-image {
+    height: 600px;
     width: 100%;
     overflow: hidden;
     position: relative;
@@ -51,7 +53,7 @@ button {
 
 
     }
-    #main-text {
+    #main-text, #woman-text {
         position: absolute; /* Allows precise positioning relative to the parent */
         top: 0;           /* Moves the text's starting point to the vertical center */
         left: 0;          /* Moves the text's starting point to the horizontal center */
@@ -63,6 +65,7 @@ button {
     }
 }
 
+
 #tile-clothes {
     display: flex;
     flex-wrap: wrap;
@@ -70,21 +73,80 @@ button {
     margin: 0 auto;
     overflow: hidden;
     position: relative;
+
     img {
         height: auto;
+
         width: calc(50% - 5px);
+        margin-right: 0;
+        margin-bottom: 0;
         object-fit: cover;
-
-
     }
+
+    img:nth-child(even) {
+        /* Prevents overflow on the 2x2 grid */
+        margin-right: 0;
+    }
+
+    /*Turn the images into a row on larger screens*/
+    @media (min-width: 421px) {
+        /* 1. Remove the max-width restriction for the single row */
+        max-width: 100%;
+
+        /* 2. Prevent wrapping to keep all images on one line */
+        flex-wrap: nowrap;
+
+        img {
+            /* 3. Set the image width for the single row.
+               If you have 4 images, 25% is a good starting point.
+               Adjust the calc() to match your desired gap between images. */
+            width: calc(25% - 15px);
+
+            /* Reset the margin for the single row layout */
+            margin-right: 0;
+            margin-bottom: 0; /* No need for vertical gap */
+        }
+
+        /* 4. Reset the nth-child rule (if you have 4 images total) */
+        img:nth-child(even) {
+            margin-right: 0;
+        }
+
+        /* 5. Target the last image in the row to remove its margin-right */
+        img:last-child {
+            margin-right: 0;
+        }
+    }
+
+
     #clothes-text {
-        position: absolute; /* Allows precise positioning relative to the parent */
-        top: 0;           /* Moves the text's starting point to the vertical center */
-        left: 0;          /* Moves the text's starting point to the horizontal center */
-        color: black; /* Choose a color that stands out against the image */
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: black;
         font-size: 1em;
         font-weight: 100;
+        max-width: 180px;
         padding-left: 10px;
+        overflow-wrap: break-word;
+    }
+}
+
+
+@media (min-width: 421px) {
+
+
+
+}
+
+#footer {
+
+    div {
+        padding-top: 5px;
+        padding-bottom: 15px;
+
+        border: 1px solid #eee;
 
     }
 }
+
