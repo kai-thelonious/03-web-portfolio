@@ -1,6 +1,5 @@
 // startup name generator
 
-// Array
 const firstWords = ["Tech", "Inno", "Smart", "Blue", "Next", "Bright", "Quantum", "Rapid", "Future", "Digital"];
 const secondWords = ["Vision", "Solutions", "Systems", "Works", "Dynamics", "Hub", "Network", "Innovations", "Labs", "Path"];
 
@@ -13,10 +12,7 @@ function getStartupName(a,b) {
     console.log(randomElement);
 }
 
-
 getStartupName(firstWords, secondWords);
-
-
 
 
 
@@ -103,10 +99,11 @@ console.log("Average grade: " + getAVG(grades));
 
 
 
-// 06 - Dice rolling championship
 
+// 06 - Dice rolling championship
 const player1 = prompt("Name of player 1").toUpperCase();
 const player2 = prompt("Name of player 2").toUpperCase();
+
 const diceRoll = () => Math.floor(Math.random() * 6) + 1;
 
 let player1Score = 0;
@@ -115,6 +112,9 @@ let player1Wins = 0;
 let player2Wins = 0;
 
 let round = 0;
+
+const player1RollArray = [];
+const player2RollArray = [];
 
 console.log("Welcome to the Dice Rolling Championship!");
 playRound();
@@ -132,16 +132,18 @@ function playRound() {
     player2Score = 0;
 
     // Gameplay loop
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 2; i++) {
         prompt(`Press Enter to roll the dice, ${player1}!`);
         let player1Roll = diceRoll();
         player1Score += player1Roll;
         console.log(`${player1} rolled: ${player1Roll} (total: ${player1Score})`);
+        player1RollArray.push(player1Roll);
 
         prompt(`Press Enter to roll the dice, ${player2}!`);
         let player2Roll = diceRoll();
         player2Score += player2Roll;
         console.log(`${player2} rolled: ${player2Roll} (total: ${player2Score})`);
+        player2RollArray.push(player2Roll);
     }
 
     // Declare the winner of round
@@ -162,16 +164,39 @@ function playRound() {
         endGame();
     } else {
         // Continue to next round
-        setTimeout(playRound, 2000);
+        setTimeout(playRound, 1000);
     }
 }
 
+// End game function which prints the champion, the stats, and returns to playRound loop
 function endGame() {
     let champion = player1Wins === 3 ? player1 : player2;
     console.log(`${champion} has won 3 rounds now and is the ULTIMATE dice champion!!!`);
+
+    console.log(`${player1} stats:\nhighest roll: ${highestRoll(player1RollArray)} 
+        \nLowest roll: ${lowestRoll(player1RollArray)} \nAverage roll: ${average(player1RollArray)}`)
+
+    console.log(`${player2} stats:\nhighest roll:\n${highestRoll(player2RollArray)} 
+        \nLowest roll: ${lowestRoll(player2RollArray)} \nAverage roll: ${average(player2RollArray)}`)
+
     prompt('Press enter to play again')
     round = 0;
     playRound()
+}
+
+
+// Highest, lowest and average functions
+let highestRoll = (arr) => Math.max(...arr);
+let lowestRoll = (arr) => Math.min(...arr);
+let average = (arr) => {
+    let totalArr = 0;
+    //average
+    for (let i = 0; i < arr.length; i++) {
+        totalArr += arr[i];
+    }
+
+    return Math.round((totalArr / arr.length)*100)/100
+
 }
 
 
