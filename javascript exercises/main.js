@@ -190,11 +190,9 @@ let highestRoll = (arr) => Math.max(...arr);
 let lowestRoll = (arr) => Math.min(...arr);
 let average = (arr) => {
     let totalArr = 0;
-    //average
     for (let i = 0; i < arr.length; i++) {
         totalArr += arr[i];
     }
-
     return Math.round((totalArr / arr.length)*100)/100
 
 }
